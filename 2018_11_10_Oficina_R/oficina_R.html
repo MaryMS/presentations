@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Os primeiros passos na Linguagem R</title>
+    <meta charset="utf-8">
+    <meta name="date" content="2018-10-11" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/robot-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Os primeiros passos na Linguagem R
+## <br>Marias Tecnólogas - Fatec Zona Sul</br>
+### 10/11/2018
+
+---
+
+
+### Maria Marinho
+
+&lt;center&gt;&lt;img src="img/foto_Maria_Marinho.JPG" style="width: 15%"&gt;&lt;/center&gt;
+
+- Bacharel em Matemática com Informática
+- Pós Graduada em Educação Matemática
+- Analista Desenvolvedora nos setores farmacêutico, bancário e outros
+- Professora de Matemática
+- Descobriu a paixão pelos dados
+- Estuda Data Science nos MOOCs Coursera, Udacity
+- Participa das comunidades PyLadies e R-Ladies São Paulo
+- Transição para Ciência de Dados
+
+mariamarinhos@gmail.com  
+https://github.com/MaryMS  
+https://datascienceforeverybody.tumblr.com
+
+---
+
+### Patrícia do Nascimento
+
+&lt;center&gt;&lt;img src="img/foto2_Patricia_do_Nascimento.jpg" style="width: 15%"&gt;&lt;/center&gt;
+
+- Formada em Ciências Sociais (USP)
+- Cursando Estatística (USP)
+- Atuou como professora de Sociologia na rede pública estadual por 3 anos
+- Participa das comunidades PyLadies e R-Ladies São Paulo
+- Atualmente aspirante à Cientista de Dados
+
+pathilink@gmail.com
+
+---
+
+### Cronograma de hoje
+
+- Data Science &lt;br&gt;&lt;/br&gt;
+- Introdução ao ambiente R &lt;br&gt;&lt;/br&gt;
+- O pacote Tidyverse &lt;br&gt;&lt;/br&gt;
+- Desafios hands-on &lt;br&gt;&lt;/br&gt;
+- Para aprender mais
+
+---
+
+### O que é Data Science?
+
+**Data Science** ou **Ciência de Dados** é uma ciência interdisciplinar sobre o processamento de grandes conjuntos de dados usando métodos estatísticos para extrair insights sobre os dados brutos.
+
+&lt;center&gt;&lt;img src="img/data-science.jpg" style="width: 70%"&gt;&lt;/center&gt;
+
+---
+
+### Ciclo da Ciência de Dados
+
+&lt;center&gt;&lt;img src="img/process.png"&gt;&lt;/center&gt;
+
+&lt;br&gt;&lt;/br&gt;
+&lt;br&gt;&lt;/br&gt;
+&lt;br&gt;&lt;/br&gt;
+
+######Fonte: [R For Data Science](https://r4ds.had.co.nz/introduction.html)
+
+---
+
+class: middle
+
+### Ciência de Dados
+
+&lt;img src="img/slide_dsgo.png"&gt;
+
+######Fonte: slide do Randy Lao na Conferência Data Science Go 2018
+
+---
+
+### Por que usar o R?
+
+- É uma linguagem de programação para análise de dados &lt;br&gt;&lt;/br&gt;
+- É open source &lt;br&gt;&lt;/br&gt;
+- Possui uma comunidade ativa de desenvolvedores &lt;br&gt;&lt;/br&gt;
+- É flexível, permitindo desenvolver funções e pacotes para facilitar o trabalho &lt;br&gt;&lt;/br&gt;
+- Está disponível em diferentes plataformas: Windows, Linux e Mac
+
+---
+
+class: center, middle
+# R Básico
+
+---
+
+### Instalação R e R Studio
+
+Escolha a versão para o seu sistema operacional
+- [Instalação do R](https://cloud.r-project.org) &lt;br&gt;&lt;/br&gt;
+- [Instalação do R Studio](https://www.rstudio.com/products/rstudio/download/#download)
+
+---
+
+### RStudio
+
+**RStudio** é o IDE da Linguagem R, ou seja, o ambiente que utilizamos para editar e executar os códigos em R.
+
+Tem quatro áreas, conforme a figura abaixo:
+
+&lt;img src="img/RStudio_screen.png"&gt;
+
+---
+
+### Help!
+
+- Pedir ajuda: **help**(nome_da_funcao) ou **?**nome_da_funcao.
+
+
+```r
+help(sum)
+?sum
+```
+
+- Se a dúvida permanecer, procure no Stack OverFlow, Google.
+  - E se ainda tiver dúvidas, pergunte para a comunidade (há grupos no Telegram e outras redes sociais).
+
+---
+
+### Pacotes no R
+
+**Pacotes** são coleções de funções, dados e documentação que estendem as capacidades do R básico.
+
+Eles precisam ser instalados e carregados.
+
+&lt;center&gt;&lt;img src="img/icon-packages.jpg" style="width: 45%"&gt;&lt;/center&gt;
+
+---
+
+### Instalação de Pacotes:
+
+- Via CRAN: install.packages("nome-do-pacote").
+
+
+```r
+install.packages("tidyverse")
+```
+
+- Via Github: devtools::install_github("nome-do-repo/nome-do-pacote").
+
+
+```r
+devtools::install_github("tidyverse/dplyr")
+```
+
+
+### Carregar pacotes:
+
+- library(nome-do-pacote)
+
+
+```r
+library(tidyverse)
+```
+
+---
+
+### Dicas sobre Pacotes
+
+1. Você só precisa instalar o pacote uma vez, mas precisa carregá-lo sempre que começar uma nova sessão;
+
+2. Para instalar o pacote use as aspas;  
+
+3. Para carregar o pacote, **não** utilize as aspas.
+
+---
+
+### RMarkdown
+
+No R é possível criar documentos que podem, por exemplo, explicar os dados em textos e também apresentar os códigos e os resultados destes. Tudo em um só lugar.
+
+**RMarkdown** é um documento que contém textos e códigos em R. 
+
+O trecho de código do RMarkdown é chamado de **chunk**.
+
+Atalho para criar um chunck: CTRL + ALT + I
+
+---
+
+### Atalhos importantes
+
+Os atalhos facilitam. Veja os principais:&lt;br&gt;&lt;/br&gt;
+
+- CTRL + ENTER: roda a linha selecionada no script.&lt;br&gt;&lt;/br&gt;
+- ALT + **-**: (&lt;-) sinal de atribuição.&lt;br&gt;&lt;/br&gt;
+- CTRL + SHIFT + M: (%&gt;%) operador pipe.&lt;br&gt;&lt;/br&gt;
+- CTRL + ALT + I: cria um chunk do RMarkdown.
+
+---
+
+### R como calculadora
+
+
+```r
+2 + 5    # adição
+```
+
+```
+## [1] 7
+```
+
+```r
+9 - 4    # subtração
+```
+
+```
+## [1] 5
+```
+
+```r
+5 * 2    # multiplicação
+```
+
+```
+## [1] 10
+```
+
+```r
+7 / 5    # divisão
+```
+
+```
+## [1] 1.4
+```
+
+---
+
+### R como calculadora
+
+
+```r
+9 %% 4   # resto da divisão de 9 por 4
+```
+
+```
+## [1] 1
+```
+
+```r
+7 %/% 4  # parte inteira da divisão de 4 por 3
+```
+
+```
+## [1] 1
+```
+
+```r
+8 ^ 2    # potenciação
+```
+
+```
+## [1] 64
+```
+
+```r
+sqrt(1024) # radiciação
+```
+
+```
+## [1] 32
+```
+
+A ordem matemática das operações também vale no R.
+
+---
+
+### Nomes de objetos e variáveis
+
+- Os nomes devem começar com uma letra. Podem conter letras, números, _ e .&lt;br&gt;&lt;/br&gt;
+- Recomendação do autor do livro R For Data Science: **usar_snake_case**, ou seja, palavras escritas em minúsculo separadas pelo underscore (_).&lt;br&gt;&lt;/br&gt;
+- O R é *case sensitive*, isto é, faz a diferenciação entre as letras minúsculas e maiúsculas. Portanto, um objeto chamado *teste* é diferente de um outro objeto chamado *Teste*.
+
+
+---
+
+### Criando objetos no R
+
+- Para atribuir um valor a um objeto no R, utilizamos o operador **&lt;-**  &lt;br&gt;&lt;/br&gt;
+- O atalho ALT + **-** gera o operador **&lt;-** &lt;br&gt;&lt;/br&gt;
+- Todas as declarações R onde são criados objetos atribuindo valores a eles, tem a mesma forma:  
+
+&lt;center&gt;&lt;b&gt;nome_do_objeto &lt;- valor&lt;b&gt;&lt;/center&gt;
+
+---
+
+#### Exemplos de objetos e atribuição de valores
+
+
+```r
+nome_empregado &lt;- "Tom Cruise de Souza e Silva"
+nome_empregado
+```
+
+```
+## [1] "Tom Cruise de Souza e Silva"
+```
+
+```r
+horas_trabalhadas &lt;- 160
+horas_trabalhadas
+```
+
+```
+## [1] 160
+```
+
+```r
+salario &lt;- 3984.23
+salario
+```
+
+```
+## [1] 3984.23
+```
+
+```r
+ativo &lt;- TRUE
+ativo
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+### Classes Básicas ou Atômicas do R
+
+- **Character**: texto &lt;br&gt;&lt;/br&gt;
+- **Integer**: números inteiros &lt;br&gt;&lt;/br&gt;
+- **Numeric**: números racionais &lt;br&gt;&lt;/br&gt;
+- **Complex**: números complexos (raramente usados para Análise de Dados) &lt;br&gt;&lt;/br&gt;
+- **Logical**: TRUE, FALSE ou NA &lt;br&gt;&lt;/br&gt;
+- **Factor**: variavéis categóricas
+
+---
+
+### Tipos de objetos:
+
+- **Vector**: armazena elementos de mesma classe. &lt;br&gt;&lt;/br&gt;   
+- **Matrix**: vetores de duas dimensões que armazenam elementos de mesma classe. &lt;br&gt;&lt;/br&gt;
+- **List**: tipo especial de vetor que aceita elementos de classes diferentes. &lt;br&gt;&lt;/br&gt;
+- **Data.frame**: são tabelas de dados com linhas e colunas, como uma tabela do Excel. Como são listas, essas colunas podem ser de classes diferentes.
+
+---
+
+### Operadores Lógicos
+
+- Igual a: **==** &lt;br&gt;&lt;/br&gt;
+- Diferente de: **!=** &lt;br&gt;&lt;/br&gt;
+- Maior que: **&gt;** &lt;br&gt;&lt;/br&gt;
+- Maior ou igual: **&gt;=** &lt;br&gt;&lt;/br&gt;
+- Menor que: **&lt;** &lt;br&gt;&lt;/br&gt;
+- Menor ou igual: **&lt;=** &lt;br&gt;&lt;/br&gt;
+- Negação: **!** &lt;br&gt;&lt;/br&gt;
+- E: **&amp;** &lt;br&gt;&lt;/br&gt;
+- OU: **|** &lt;br&gt;&lt;/br&gt;
+
+---
+
+### NA
+
+Uma característica importante do R que pode dificultar a comparação são os valores ausentes ou **NAs** (não disponíveis). 
+
+**NA** representa um valor desconhecido. 
+
+---
+
+### NA
+
+Quase qualquer operação envolvendo um valor desconhecido também será desconhecido:
+
+
+```r
+NA &gt; 10
+```
+
+```
+## [1] NA
+```
+
+```r
+10 == NA
+```
+
+```
+## [1] NA
+```
+
+```r
+NA + 10
+```
+
+```
+## [1] NA
+```
+
+```r
+NA / 2
+```
+
+```
+## [1] NA
+```
+
+---
+
+### NA
+
+E o mais confuso:
+
+
+```r
+NA == NA
+```
+
+```
+## [1] NA
+```
+
+&lt;br&gt;&lt;/br&gt;
+
+**is.na()** é a função que testa se um objeto é NA.
+
+---
+
+### Estrutura Condicional: IF
+
+
+```r
+mes &lt;- "Novembro"
+
+if(mes == "Novembro") {         
+  print("O Natal é mês que vem!") # mostra essa mensagem.
+}
+```
+
+```
+## [1] "O Natal é mês que vem!"
+```
+---
+
+### Estrutura Condicional: IF e ELSE
+
+
+```r
+mes &lt;- "Dezembro"
+
+if(mes == "Novembro") {  
+  
+  print("O Natal é mês que vem!") # mostra essa mensagem.
+  
+} else if(mes == "Dezembro") {
+  
+  print("O Natal chegou!") # mostra essa mensagem.
+}
+```
+
+```
+## [1] "O Natal chegou!"
+```
+
+---
+
+### Estrutura de Repetição: FOR
+
+Imprime os 10 primeiros nomes dos personagens da base starwars usando o laço for.
+
+```r
+df &lt;- starwars
+
+lista_personagens &lt;- head(df$name, 10)
+
+for(i in seq_along(lista_personagens)) {
+  print(lista_personagens[i])
+}
+```
+
+```
+## [1] "Luke Skywalker"
+## [1] "C-3PO"
+## [1] "R2-D2"
+## [1] "Darth Vader"
+## [1] "Leia Organa"
+## [1] "Owen Lars"
+## [1] "Beru Whitesun lars"
+## [1] "R5-D4"
+## [1] "Biggs Darklighter"
+## [1] "Obi-Wan Kenobi"
+```
+
+---
+
+class: center, middle
+# Tidyverse
+
+---
+
+### O Tidyverse
+
+É uma coleção de pacotes R projetados para a ciência de dados. Todos os pacotes compartilham uma mesma filosofia de desenvolvimento, sintaxe e estruturas de dados.
+
+&lt;center&gt;&lt;img src="img/Tidyverse_packages.png"style="width: 90%"&gt;&lt;/center&gt;
+
+---
+
+### Pacotes do Tidyverse
+
+- **ggplot2**: cria gráficos &lt;br&gt;&lt;/br&gt;
+- **dplyr**: manipulação de dados &lt;br&gt;&lt;/br&gt;
+- **tidyr**: arruma os dados &lt;br&gt;&lt;/br&gt;
+- **readr**: leitura dos dados &lt;br&gt;&lt;/br&gt;
+- **purrr**: ferramentas para programação funcional, trabalha com funções e vetores &lt;br&gt;&lt;/br&gt;
+- **tibble**: dataframes moderno, mais simples de manipular &lt;br&gt;&lt;/br&gt;
+- **magrittr**: facilita a escrita e leitura do código &lt;br&gt;&lt;/br&gt;
+- **stringr**: trabalha com strings &lt;br&gt;&lt;/br&gt;
+- **forcats**: trabalha com fatores &lt;br&gt;&lt;/br&gt;
+- **lubridate**: trabalha com datas
+
+---
+
+### dplyr
+
+A ideia do pacote **dplyr** é tornar a manipulação de dados explícita utilizando verbos que indicam a ação a ser realizada. 
+
+O encadeamento dos verbos com o banco de dados é realizado com o operador **pipe**: **%&gt;%**
+
+O dplyr foi desenhado para trabalhar com o operator pipe **%&gt;%** do pacote magritrr.
+
+---
+
+### Os 6 verbos do dplyr 
+
+- **filter**(): seleciona linhas &lt;br&gt;&lt;/br&gt;
+- **arrange**(): ordena de acordo com uma ou mais colunas &lt;br&gt;&lt;/br&gt;
+- **select**(): seleciona colunas &lt;br&gt;&lt;/br&gt;
+- **mutate**(): cria/modifica colunas &lt;br&gt;&lt;/br&gt;
+- **summarise**(): sumariza/agrega colunas &lt;br&gt;&lt;/br&gt;
+- **group_by**(): agrupa colunas
+
+---
+
+### O operador %&gt;%, o Pipe
+
+Imagine uma receita que tenha as instruções: junte os ingredientes, misture e leve ao forno. Na forma usual do R, essas instruções provavelmente seriam assim:
+
+
+**forno(misture(junte(ingredientes)))**
+
+
+Dessa forma temos que pensar “de dentro para fora”. O primeiro comando que lemos é forno, sendo que essa é a última operação que será realizada.
+
+Com o operador pipe seria algo assim:
+
+
+**ingredientes %&gt;% junte %&gt;% misture %&gt;% forno**
+
+
+É mais intuitivo!
+  
+---
+
+### O operador %&gt;%, o Pipe
+
+Para ficar mais fácil: pense no Pipe %&gt;% como um operador que efetua as operações à direita nos valores que estão à esquerda.
+
+Ou ainda, o operador %&gt;%  passa o que está à esquerda como argumento para a operação da direita.
+
+**Atalho**: CTRL + SHIFT + M
+
+---
+
+### Importação de arquivos
+
+Pacote **readr**: funções para ler arquivos texto
+- read_csv
+- read_csv2
+- read_delim
+- read_log
+- read_rds
+
+Pacote **readxl**: função para ler arquivo Excel  
+- read_excel
+
+Pacote **haven**: funções para ler outros softwares estatísticos
+
+- read_sas
+- read_spss
+- read_stata
+
+---
+
+### E lá vamos nós!
+
+&lt;center&gt;&lt;img src="img/S5e27_T.V._typing.gif"&gt;&lt;/center&gt; 
+
+---
+
+### Importação de arquivos
+
+
+```r
+library(tidyverse)
+
+# Uma outra opção é carregar somente o(s) pacote(s) que irá utilizar.
+#library(dplyr)
+
+# Importa o arquivo csv para o objeto df_titanic
+df_titanic &lt;- read_csv("data/titanic.csv")
+```
+
+---
+
+### View e glimpse
+
+- Para visualizar um objeto: **View**(nome-do-objeto)
+
+- **glimpse()**: mostra informações como o número de observações (linhas) e variáveis (colunas), o nome das colunas, o tipo delas e os primeiros dados de cada coluna.
+
+
+```r
+df_titanic %&gt;% glimpse()
+```
+
+```
+## Observations: 891
+## Variables: 12
+## $ id_passageiro  &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ...
+## $ sobreviveu     &lt;chr&gt; "nao", "sim", "sim", "sim", "nao", "nao", "nao"...
+## $ classe         &lt;int&gt; 3, 1, 3, 1, 3, 3, 1, 3, 3, 2, 3, 1, 3, 3, 3, 2,...
+## $ nome           &lt;chr&gt; "Braund, Mr. Owen Harris", "Cumings, Mrs. John ...
+## $ sexo           &lt;chr&gt; "masculino", "feminino", "feminino", "feminino"...
+## $ idade          &lt;dbl&gt; 22, 38, 26, 35, 35, NA, 54, 2, 27, 14, 4, 58, 2...
+## $ irmaos_conjuge &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 3, 0, 1, 1, 0, 0, 1, 0, 0,...
+## $ pais_criancas  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0, 5, 0, 0,...
+## $ passagem       &lt;chr&gt; "A/5 21171", "PC 17599", "STON/O2. 3101282", "1...
+## $ tarifa         &lt;dbl&gt; 7.2500, 71.2833, 7.9250, 53.1000, 8.0500, 8.458...
+## $ cabine         &lt;chr&gt; NA, "C85", NA, "C123", NA, NA, "E46", NA, NA, N...
+## $ embarque       &lt;chr&gt; "Southampton", "Cherbourg", "Southampton", "Sou...
+```
+
+---
+
+### filter
+
+Selecionar linhas da base de dados.
+
+
+```r
+# Seleciona os sobreviventes.
+df_titanic %&gt;% filter(sobreviveu == "sim")
+```
+
+```
+## # A tibble: 342 x 12
+##    id_passageiro sobreviveu classe nome  sexo  idade irmaos_conjuge
+##            &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;          &lt;int&gt;
+##  1             2 sim             1 Cumi~ femi~    38              1
+##  2             3 sim             3 Heik~ femi~    26              0
+##  3             4 sim             1 Futr~ femi~    35              1
+##  4             9 sim             3 John~ femi~    27              0
+##  5            10 sim             2 Nass~ femi~    14              1
+##  6            11 sim             3 Sand~ femi~     4              1
+##  7            12 sim             1 Bonn~ femi~    58              0
+##  8            16 sim             2 Hewl~ femi~    55              0
+##  9            18 sim             2 Will~ masc~    NA              0
+## 10            20 sim             3 Mass~ femi~    NA              0
+## # ... with 332 more rows, and 5 more variables: pais_criancas &lt;int&gt;,
+## #   passagem &lt;chr&gt;, tarifa &lt;dbl&gt;, cabine &lt;chr&gt;, embarque &lt;chr&gt;
+```
+
+**Tibble** é uma releitura moderna do data.frame.
+
+---
+
+### filter
+
+
+```r
+# Cria um objeto e atribui a ele as linhas com os sobreviventes.
+sobreviventes &lt;- df_titanic %&gt;% filter(sobreviveu == "sim")
+
+
+
+# Crianças com menos de 12 anos que sobreviveram.
+criancas_sobreviventes &lt;- df_titanic %&gt;% filter(sobreviveu == "sim" &amp; idade &lt; 12)
+
+
+
+# Embarque realizado nos locais: Southampton ou Queenstow.
+embarque &lt;- df_titanic %&gt;% filter(embarque == "Southampton" |
+                                  embarque == "Queenstow")
+      
+                                                                
+
+# A instrução acima pode ser reescrita com o operador %in%:
+embarque &lt;- df_titanic %&gt;% filter(embarque %in% c("Southampton", "Queenstow"))
+```
+
+---
+
+### filter
+
+
+```r
+# Pessoas sem informação de local de embarque.
+# is.na() - função que retorna TRUE se o valor for NA e FALSE se não for.
+sem_embarque &lt;- df_titanic %&gt;% filter(is.na(embarque))
+
+
+
+# Pessoas que tem "Elizabeth" em qualquer posição do campo nome.
+# str_detect - função que retorna TRUE se detectou o valor dado e 
+# FALSE, caso não tenha encontrado.
+nome &lt;- df_titanic %&gt;% filter(str_detect(nome, "Elizabeth"))
+```
+
+---
+
+### Desafio 1
+
+1) Criar um objeto chamado passageiras que seleciona somente as passageiras.
+
+2) Criar um objeto chamado criancas_Cherbourg que seleciona as crianças com menos de 12 anos que embarcaram na cidade de Cherbourg.
+
+---
+
+### arrange
+
+Ordenar as linhas da base de dados conforme uma ou mais variáveis.
+
+
+```r
+# Ordena por ordem crescente da coluna nome.
+passageiros_ordenados &lt;- df_titanic %&gt;% arrange(nome)
+passageiros_ordenados
+```
+
+```
+## # A tibble: 891 x 12
+##    id_passageiro sobreviveu classe nome  sexo  idade irmaos_conjuge
+##            &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;          &lt;int&gt;
+##  1           846 nao             3 Abbi~ masc~    42              0
+##  2           747 nao             3 Abbo~ masc~    16              1
+##  3           280 sim             3 Abbo~ femi~    35              1
+##  4           309 nao             2 Abel~ masc~    30              1
+##  5           875 sim             2 Abel~ femi~    28              1
+##  6           366 nao             3 Adah~ masc~    30              0
+##  7           402 nao             3 Adam~ masc~    26              0
+##  8            41 nao             3 Ahli~ femi~    40              1
+##  9           856 sim             3 Aks,~ femi~    18              0
+## 10           208 sim             3 Albi~ masc~    26              0
+## # ... with 881 more rows, and 5 more variables: pais_criancas &lt;int&gt;,
+## #   passagem &lt;chr&gt;, tarifa &lt;dbl&gt;, cabine &lt;chr&gt;, embarque &lt;chr&gt;
+```
+
+---
+
+### arrange 
+
+É possível ordenar na ordem descrescente e também por mais de uma variável.
+
+
+```r
+# Ordena por ordem decrescente de idade e por ordem crescente de nome.
+passageiros_ordenados &lt;- df_titanic %&gt;% arrange(desc(idade), nome)
+passageiros_ordenados
+```
+
+```
+## # A tibble: 891 x 12
+##    id_passageiro sobreviveu classe nome  sexo  idade irmaos_conjuge
+##            &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;          &lt;int&gt;
+##  1           631 sim             1 Bark~ masc~  80                0
+##  2           852 nao             3 Sven~ masc~  74                0
+##  3           494 nao             1 Arta~ masc~  71                0
+##  4            97 nao             1 Gold~ masc~  71                0
+##  5           117 nao             3 Conn~ masc~  70.5              0
+##  6           746 nao             1 Cros~ masc~  70                1
+##  7           673 nao             2 Mitc~ masc~  70                0
+##  8            34 nao             2 Whea~ masc~  66                0
+##  9           281 nao             3 Duan~ masc~  65                0
+## 10           457 nao             1 Mill~ masc~  65                0
+## # ... with 881 more rows, and 5 more variables: pais_criancas &lt;int&gt;,
+## #   passagem &lt;chr&gt;, tarifa &lt;dbl&gt;, cabine &lt;chr&gt;, embarque &lt;chr&gt;
+```
+
+---
+
+### filter &amp; arrange
+
+
+```r
+# Filtra os sobreviventes homens e ordena por classe.
+df_titanic  %&gt;% 
+  filter(sexo == "masculino" &amp; sobreviveu == "sim") %&gt;% 
+  arrange(classe)
+```
+
+```
+## # A tibble: 109 x 12
+##    id_passageiro sobreviveu classe nome  sexo  idade irmaos_conjuge
+##            &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;          &lt;int&gt;
+##  1            24 sim             1 Slop~ masc~ 28                 0
+##  2            56 sim             1 Wool~ masc~ NA                 0
+##  3            98 sim             1 Gree~ masc~ 23                 0
+##  4           188 sim             1 "Rom~ masc~ 45                 0
+##  5           210 sim             1 Blan~ masc~ 40                 0
+##  6           225 sim             1 Hoyt~ masc~ 38                 1
+##  7           249 sim             1 Beck~ masc~ 37                 1
+##  8           299 sim             1 Saal~ masc~ NA                 0
+##  9           306 sim             1 Alli~ masc~  0.92              1
+## 10           371 sim             1 Hard~ masc~ 25                 1
+## # ... with 99 more rows, and 5 more variables: pais_criancas &lt;int&gt;,
+## #   passagem &lt;chr&gt;, tarifa &lt;dbl&gt;, cabine &lt;chr&gt;, embarque &lt;chr&gt;
+```
+
+---
+
+### Desafio 2
+
+1) Ordenar os passageiros por ordem decrescente de classe e nomeie o objeto.
+
+2) Ordenar somente as passageiras por ordem de idade e dê um nome para o objeto.
+
+---
+
+### select
+
+Selecionar colunas (variáveis) da base de dados.
+
+
+```r
+# Seleciona as colunas indicadas.
+df_titanic %&gt;% select(nome, idade, classe, embarque)
+```
+
+```
+## # A tibble: 891 x 4
+##    nome                                            idade classe embarque  
+##    &lt;chr&gt;                                           &lt;dbl&gt;  &lt;int&gt; &lt;chr&gt;     
+##  1 Braund, Mr. Owen Harris                            22      3 Southampt~
+##  2 Cumings, Mrs. John Bradley (Florence Briggs Th~    38      1 Cherbourg 
+##  3 Heikkinen, Miss. Laina                             26      3 Southampt~
+##  4 Futrelle, Mrs. Jacques Heath (Lily May Peel)       35      1 Southampt~
+##  5 Allen, Mr. William Henry                           35      3 Southampt~
+##  6 Moran, Mr. James                                   NA      3 Queenstow 
+##  7 McCarthy, Mr. Timothy J                            54      1 Southampt~
+##  8 Palsson, Master. Gosta Leonard                      2      3 Southampt~
+##  9 Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Be~    27      3 Southampt~
+## 10 Nasser, Mrs. Nicholas (Adele Achem)                14      2 Cherbourg 
+## # ... with 881 more rows
+```
+
+---
+
+### select
+
+O select tem várias funções úteis, como por exemplo:
+
+- **starts_with**("cla"): seleciona colunas que começam com "cla" &lt;br&gt;&lt;/br&gt;
+- **ends_with**("ifa"): seleciona colunas que terminam com "ifa" &lt;br&gt;&lt;/br&gt;
+- **contains**("ssa"): seleciona colunas que contêm "ssa" &lt;br&gt;&lt;/br&gt;
+
+---
+
+### select
+
+
+```r
+# Seleciona as colunas que começam com "id".
+df_titanic %&gt;%  select(starts_with("id"))
+```
+
+```
+## # A tibble: 891 x 2
+##    id_passageiro idade
+##            &lt;int&gt; &lt;dbl&gt;
+##  1             1    22
+##  2             2    38
+##  3             3    26
+##  4             4    35
+##  5             5    35
+##  6             6    NA
+##  7             7    54
+##  8             8     2
+##  9             9    27
+## 10            10    14
+## # ... with 881 more rows
+```
+
+---
+
+### select
+
+Ao inserir o caracter **-** na frente da coluna, você estará excluindo as colunas da seleção.
+
+
+```r
+df_titanic %&gt;%  select(-id_passageiro, -nome)
+```
+
+```
+## # A tibble: 891 x 10
+##    sobreviveu classe sexo  idade irmaos_conjuge pais_criancas passagem
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;          &lt;int&gt;         &lt;int&gt; &lt;chr&gt;   
+##  1 nao             3 masc~    22              1             0 A/5 211~
+##  2 sim             1 femi~    38              1             0 PC 17599
+##  3 sim             3 femi~    26              0             0 STON/O2~
+##  4 sim             1 femi~    35              1             0 113803  
+##  5 nao             3 masc~    35              0             0 373450  
+##  6 nao             3 masc~    NA              0             0 330877  
+##  7 nao             1 masc~    54              0             0 17463   
+##  8 nao             3 masc~     2              3             1 349909  
+##  9 sim             3 femi~    27              0             2 347742  
+## 10 sim             2 femi~    14              1             0 237736  
+## # ... with 881 more rows, and 3 more variables: tarifa &lt;dbl&gt;,
+## #   cabine &lt;chr&gt;, embarque &lt;chr&gt;
+```
+
+---
+
+### Desafio 3
+
+
+1) Criar um objeto para salvar o resultado com as colunas nome, tarifa e classe.
+
+2) Mostrar uma tabela com as tarifas maiores que 50 por ordem decrescente de tarifa e ordem crescente de classe. A tabela não deverá conter os campos irmaos_conjuge, pais_criancas e passagem.
+
+---
+
+### mutate
+
+Criar ou modificar colunas de uma base de dados.
+
+Supondo que o valor da tarifa no dataset está em libras, e que 1£ = R$ 4.93, vamos descobrir qual é o valor das tarifas em reais.
+
+
+```r
+# Altera a coluna tarifa para o valor da tarifa em reais.
+tarifa_conversao &lt;- df_titanic %&gt;% mutate(tarifa = tarifa * 4.93)
+
+
+
+# Retorna a coluna tarifa para o valor da época.
+tarifa_conversao &lt;- df_titanic %&gt;% mutate(tarifa = tarifa / 4.93)
+```
+
+---
+
+### mutate
+
+
+```r
+# Cria no dataset uma nova variável chamada tarifa_reais.
+tarifa_conversao &lt;- df_titanic %&gt;% mutate(tarifa_real = tarifa * 4.93)
+tarifa_conversao
+```
+
+```
+## # A tibble: 891 x 13
+##    id_passageiro sobreviveu classe nome  sexo  idade irmaos_conjuge
+##            &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;          &lt;int&gt;
+##  1             1 nao             3 Brau~ masc~    22              1
+##  2             2 sim             1 Cumi~ femi~    38              1
+##  3             3 sim             3 Heik~ femi~    26              0
+##  4             4 sim             1 Futr~ femi~    35              1
+##  5             5 nao             3 Alle~ masc~    35              0
+##  6             6 nao             3 Mora~ masc~    NA              0
+##  7             7 nao             1 McCa~ masc~    54              0
+##  8             8 nao             3 Pals~ masc~     2              3
+##  9             9 sim             3 John~ femi~    27              0
+## 10            10 sim             2 Nass~ femi~    14              1
+## # ... with 881 more rows, and 6 more variables: pais_criancas &lt;int&gt;,
+## #   passagem &lt;chr&gt;, tarifa &lt;dbl&gt;, cabine &lt;chr&gt;, embarque &lt;chr&gt;,
+## #   tarifa_real &lt;dbl&gt;
+```
+
+---
+
+### Desafio 4
+
+Criar uma tabela com um novo campo que contenha a tarifa em dólar seguindo essa cotação: 1£ = $ 1.31.
+Classifique por ordem decrescente de tarifa.
+
+---
+
+### summarize
+
+Sumariza colunas da base de dados, ou seja, resume os valores das colunas em um só valor,
+podendo ser a média, mediana, min, max, etc.
+
+
+```r
+# Calcula a média da variável idade
+# na.rm = TRUE remove os NAs
+df_titanic %&gt;% summarize(mean(idade, na.rm=TRUE))
+```
+
+```
+## # A tibble: 1 x 1
+##   `mean(idade, na.rm = TRUE)`
+##                         &lt;dbl&gt;
+## 1                        29.7
+```
+
+---
+
+### summarize
+
+
+```r
+# Calcula: número de mulheres, mediana geral da tarifa e número de passageiros.
+# No caso abaixo a função sum() retorna o número de mulheres. 
+# A função n() mostra o número de linhas (em cada grupo) e 
+# costuma ser bastante usada com o summarize.
+df_titanic %&gt;% 
+  summarize(
+    mulheres = sum(sexo == "feminino", na.rm = TRUE),
+    mediana_tarifa = median(tarifa, na.rm = TRUE),
+    num_passageiros = n()
+)
+```
+
+```
+## # A tibble: 1 x 3
+##   mulheres mediana_tarifa num_passageiros
+##      &lt;int&gt;          &lt;dbl&gt;           &lt;int&gt;
+## 1      314           14.5             891
+```
+
+---
+
+### summarize
+
+
+```r
+# Filtra os passageiros homens e calcula a mediana da tarifa.
+df_titanic %&gt;% 
+  filter(sexo == "masculino") %&gt;% 
+  summarize(
+    mediana_tarifa = median(tarifa, na.rm = TRUE)
+)
+```
+
+```
+## # A tibble: 1 x 1
+##   mediana_tarifa
+##            &lt;dbl&gt;
+## 1           10.5
+```
+
+---
+
+### Desafio 5
+
+1) Calcular a média da tarifa.
+
+2) Filtrar as passageiras mulheres e calcular a mediana da tarifa. 
+
+---
+
+### group_by + summarize
+
+Agrupa as colunas de uma base de dados. 
+
+O group_by é bastante utilizado com o summarize.
+
+
+```r
+# Agrupa pela variável sobreviveu e calcula
+# o número de passageiros por grupo (sim/nao).
+df_titanic %&gt;% 
+  group_by(sobreviveu) %&gt;% 
+  summarize(num_passageiros = n())
+```
+
+```
+## # A tibble: 2 x 2
+##   sobreviveu num_passageiros
+##   &lt;chr&gt;                &lt;int&gt;
+## 1 nao                    549
+## 2 sim                    342
+```
+
+---
+
+### group_by + summarize 
+  
+
+```r
+# Agrupa pelo local de embarque e calcula a mediana da tarifa de cada grupo.
+df_titanic %&gt;% 
+  group_by(embarque) %&gt;% 
+  summarize(mediana_tarifa = median(tarifa, na.rm = TRUE))
+```
+
+```
+## # A tibble: 4 x 2
+##   embarque    mediana_tarifa
+##   &lt;chr&gt;                &lt;dbl&gt;
+## 1 Cherbourg            29.7 
+## 2 Queenstow             7.75
+## 3 Southampton          13   
+## 4 &lt;NA&gt;                 80
+```
+
+---
+
+### Desafios 6
+
+1) Criar uma tabela com a quantidade de pessoas por classe.
+
+2) Criar uma tabela com a mediana da tarifa por sexo.
+
+---
+
+### Join
+
+Com o **dplyr** também é possível fazer joins.
+
+&lt;center&gt;&lt;img src= "img/dplyr_join.png" style="width: 43%"&gt;&lt;/center&gt;
+
+[Fonte: @yutannihilation](https://twitter.com/yutannihilation/status/551572539697143808)
+
+---
+
+### ggplot2 - o pacote dos gráficos
+
+&lt;img src= "img/ggplot_masterlist_23.png" style="width: 54%"&gt;
+&lt;img src= "img/ggplot_masterlist_49.png" style="width: 54%"&gt;
+
+[Fonte: r-statistics.co](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+
+---
+
+### Para aprender mais
+
+- [Livro R for Data Science](https://r4ds.had.co.nz) &lt;br&gt;&lt;/br&gt;
+- [Material do Curso-R](https://www.curso-r.com/material/) &lt;br&gt;&lt;/br&gt;
+- [Site do Tidyverse](- https://www.tidyverse.org) &lt;br&gt;&lt;/br&gt;
+- [R-Bloggers](https://www.r-bloggers.com) &lt;br&gt;&lt;/br&gt;
+
+---
+
+### Referências
+
+- https://r4ds.had.co.nz
+- https://www.curso-r.com/material/
+- https://www.tidyverse.org
+- http://brunaw.com/slides/rladies-sp/13-08-2018/meetup.html#1
+- https://bookdown.org/wevsena/curso_r_tce/curso_r_tce.html
+- https://rstudio-pubs-static.s3.amazonaws.com/279878_c7634fb5fe9e40b7abc7c35aa724a2a0.html
+- https://analisereal.com/tag/introducao-a-analise-de-dados-com-o-r-2/
+- http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
+
+A apresentação foi feita em [xaringan](https://github.com/yihui/xaringan), um pacote do R! :)
+
+---
+
+class: middle
+&lt;center&gt;&lt;img src="img/if_you_want_to_go_fast_go_alone.jpg" style="width: 50%"&gt;&lt;/center&gt;
+
+---
+
+class: middle
+
+### Muito obrigada!
+
+mariamarinhos@gmail.com
+
+&lt;p&gt;&lt;/p&gt;
+
+pathilink@gmail.com
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
