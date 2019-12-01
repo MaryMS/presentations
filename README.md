@@ -7,7 +7,7 @@ Presentations for Communities Tech Meetups
 Presentation for the 3rd Anniversary of PyLadies Sao Paulo - 07/09/2018
 
 .[Data Science e o Mercado de Trabalho](http://bit.ly/DataScience_MercadoTrabalho)       
-Presentation for students at Metodista University
+Presentation for students at Metodista University - 08/05/2019
 
 . [Do SQL para o R usando o dplyr](http://bit.ly/satRdaySP_SQL_R)  
 Lightning talk for the 1º satRday São Paulo - 30/11/2019
