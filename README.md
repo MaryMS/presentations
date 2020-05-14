@@ -11,3 +11,6 @@ Presentation for students at Metodista University - 08/05/2019
 
 . [Do SQL para o R usando o dplyr](http://bit.ly/satRdaySP_SQL_R)  
 Lightning talk for the 1º satRday São Paulo - 30/11/2019
+
+. [Do SQL para o R usando o dplyr](http://bit.ly/RLadiesSaoPaulo_SQL_R)  
+Presentation for R-Ladies São Paulo meetup - 16/05/2020
