@@ -14,3 +14,9 @@ Lightning talk for the 1º satRday São Paulo - 30/11/2019
 
 . [Do SQL para o R usando o dplyr](https://bit.ly/rladiessaopaulo-sql-r)  
 Presentation for R-Ladies São Paulo meetup - 16/05/2020
+
+. [Do SQL para o R usando o dplyr](https://bit.ly/nerdzao-sql-r)  
+Presentation for Nerdzão meetup - 28/05/2020
+
+. [Data Science e o Mercado de Trabalho](https://bit.ly/metodista_data_science_mercado_trabalho)       
+Presentation for students at Metodista University - 09/11/2020
