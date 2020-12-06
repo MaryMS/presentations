@@ -20,3 +20,6 @@ Presentation for Nerdzão meetup - 28/05/2020
 
 . [Data Science e o Mercado de Trabalho](https://bit.ly/metodista_data_science_mercado_trabalho)       
 Presentation for students at Universidade Metodista - 09/11/2020
+
+. [Data Science e o Mercado de Trabalho](https://bit.ly/ifsc-data-science-mercado-trabalho)       
+Presentation for students of IFSC campus Gaspar - 07/12/2020
